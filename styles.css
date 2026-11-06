@@ -1,0 +1,162 @@
+:root {
+  --bg: #0f1115;
+  --surface: #171a21;
+  --surface-2: #1f232d;
+  --text: #e8eaf0;
+  --muted: #9aa3b2;
+  --accent: #6c5ce7;
+  --danger: #e05252;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 5;
+  border-bottom: 1px solid var(--surface-2);
+}
+
+.topbar h1 { font-size: 1.4rem; margin: 0; }
+
+.topbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn {
+  border: 1px solid var(--surface-2);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.btn:hover { filter: brightness(1.2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); }
+.btn.ghost { background: transparent; }
+.btn.small { padding: 5px 10px; font-size: 0.8rem; }
+.btn.danger { color: #fff; background: var(--danger); border-color: var(--danger); }
+
+input[type="search"], input[type="text"], input[type="url"], input[type="number"], input[type="password"], select, textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--surface-2);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); }
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+}
+.chip {
+  border: 1px solid var(--surface-2);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 5px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.chip.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 8px 24px 48px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--surface-2);
+}
+.card.watched { opacity: 0.55; }
+
+.poster {
+  aspect-ratio: 2 / 3;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.card-title { font-weight: 600; font-size: 0.95rem; line-height: 1.25; }
+.card-meta { color: var(--muted); font-size: 0.78rem; display: flex; gap: 8px; flex-wrap: wrap; }
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.card-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+
+.empty { color: var(--muted); text-align: center; padding: 48px; }
+
+.panel {
+  margin: 0 24px 48px;
+  background: var(--surface);
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.panel h2 { margin-top: 0; font-size: 1.05rem; }
+.muted { color: var(--muted); font-size: 0.85rem; }
+.assistant-row { display: flex; gap: 8px; }
+.assistant-row input { flex: 1; }
+.reply {
+  margin-top: 12px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+}
+
+dialog {
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0;
+  max-width: 480px;
+  width: calc(100% - 32px);
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+dialog form { padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+dialog h2 { margin: 0; font-size: 1.1rem; }
+dialog label { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; color: var(--muted); }
+.form-row { display: flex; gap: 8px; align-items: center; }
+.form-row select { flex: 1; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }

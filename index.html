@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Shows — Personal Streaming Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>My Shows</h1>
+  <div class="topbar-actions">
+    <input id="search" type="search" placeholder="Search your shows..." aria-label="Search your shows">
+    <button id="assistant-toggle" class="btn ghost" type="button">Ask AI</button>
+    <button id="settings-toggle" class="btn ghost" type="button">Settings</button>
+    <button id="add-show" class="btn primary" type="button">+ Add show</button>
+  </div>
+</header>
+
+<nav id="service-chips" class="chips" aria-label="Filter by service"></nav>
+
+<main id="grid" class="grid" aria-live="polite"></main>
+<p id="empty" class="empty" hidden>No shows match. Add one to get started.</p>
+
+<section id="assistant-panel" class="panel" hidden>
+  <h2>Watch assistant</h2>
+  <p class="muted">Ask for a pick from your list. Uses your own Mistral API key (stored only in this browser).</p>
+  <div class="assistant-row">
+    <input id="assistant-q" type="text" placeholder="e.g. something light to watch tonight">
+    <button id="assistant-ask" class="btn primary" type="button">Ask</button>
+  </div>
+  <div id="assistant-reply" class="reply" hidden></div>
+</section>
+
+<dialog id="show-modal">
+  <form id="show-form" method="dialog">
+    <h2 id="modal-title">Add show</h2>
+    <label>Title
+      <input id="f-title" required maxlength="120">
+    </label>
+    <div class="form-row">
+      <button id="tmdb-search" class="btn ghost" type="button">Search TMDB</button>
+      <select id="tmdb-results" hidden></select>
+    </div>
+    <label>Year
+      <input id="f-year" type="number" min="1900" max="2100">
+    </label>
+    <label>Service
+      <select id="f-service"></select>
+    </label>
+    <label>Watch link (official page or app deep link)
+      <input id="f-url" type="url" placeholder="https://www.netflix.com/title/...">
+    </label>
+    <label>Poster image URL (optional)
+      <input id="f-poster" type="url" placeholder="https://...">
+    </label>
+    <label>Genre
+      <input id="f-genre" maxlength="60">
+    </label>
+    <label>Notes
+      <textarea id="f-notes" rows="2" maxlength="300"></textarea>
+    </label>
+    <div class="modal-actions">
+      <button type="button" id="modal-cancel" class="btn ghost">Cancel</button>
+      <button type="submit" class="btn primary">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="settings-modal">
+  <form id="settings-form" method="dialog">
+    <h2>Settings</h2>
+    <p class="muted">Keys are stored only in this browser's localStorage and are never sent anywhere except the service they belong to.</p>
+    <label>TMDB API key (optional, for poster/metadata lookup)
+      <input id="s-tmdb" type="password" autocomplete="off">
+    </label>
+    <label>Mistral API key (optional, for the watch assistant)
+      <input id="s-mistral" type="password" autocomplete="off">
+    </label>
+    <label>Mistral model
+      <input id="s-model" type="text" placeholder="mistral-small-latest">
+    </label>
+    <div class="modal-actions">
+      <button type="button" id="settings-cancel" class="btn ghost">Close</button>
+      <button type="submit" class="btn primary">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
